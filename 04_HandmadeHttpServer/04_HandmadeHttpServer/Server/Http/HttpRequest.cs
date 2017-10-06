@@ -26,7 +26,7 @@
             CoreValidator.ThrowIfNullOrEmpty(requestText, nameof(requestText));
 
             var requestLines = requestText
-                .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                .Split(Environment.NewLine);
 
             if (!requestLines.Any())
             {
@@ -66,9 +66,7 @@
 
         private void ParseQuery(string queryString, IDictionary<string, string> dict)
         {
-            var query = queryString
-                            .Split("?")
-                            .Last();
+            var query = queryString.Split("?").Last();
 
             if (!query.Contains("="))
             {
@@ -95,7 +93,7 @@
             for (int i = 1; i < emptyLineAfterHeadersIndex; i++)
             {
                 var currentLine = requestLines[i];
-                var headerParts = currentLine.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                var headerParts = currentLine.Split(new[] { ": " }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (headerParts.Length != 2)
                 {

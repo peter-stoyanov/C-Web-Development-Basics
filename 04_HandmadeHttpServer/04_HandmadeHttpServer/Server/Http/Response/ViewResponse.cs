@@ -8,8 +8,7 @@
     {
         private readonly IView view;
 
-        protected ViewResponse(HttpStatusCode statusCode, IView view)
-            : base()
+        public ViewResponse(HttpStatusCode statusCode, IView view) : base()
         {
             ValidateStatusCode(statusCode);
 

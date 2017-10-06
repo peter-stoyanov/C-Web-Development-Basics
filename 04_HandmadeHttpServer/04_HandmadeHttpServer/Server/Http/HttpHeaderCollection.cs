@@ -34,7 +34,8 @@
 
             if (!this.headers.ContainsKey(key))
             {
-                throw new InvalidOperationException($"The given key {key} is not present in the headers collection.");
+                throw new InvalidOperationException(
+                    $"The given key {key} is not present in the headers collection.");
             }
 
             return this.headers[key];

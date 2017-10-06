@@ -1,18 +1,19 @@
 ﻿namespace HandmadeHttpServer.Server.Http
 {
+    using HandmadeHttpServer.Server.Http.Contracts;
     using Server.Enums;
     using System.Text;
 
-    public abstract class HttpResponse
+    public abstract class HttpResponse : IHttpResponse
     {
         private string StatusCodeMessage => this.StatusCode.ToString();
 
         protected HttpResponse()
         {
-            this.HeaderCollection = new HttpHeaderCollection();
+            this.Headers = new HttpHeaderCollection();
         }
 
-        public HttpHeaderCollection HeaderCollection { get; }
+        public HttpHeaderCollection Headers { get; }
 
         public HttpStatusCode StatusCode { get; protected set; }
 
@@ -23,7 +24,7 @@
             var statusCodeNumber = (int)this.StatusCode;
             response.AppendLine($"HTTP/1.1 {statusCodeNumber} {this.StatusCodeMessage}");
 
-            response.AppendLine(this.HeaderCollection.ToString());
+            response.AppendLine(this.Headers.ToString());
             response.AppendLine();
 
             return response.ToString();

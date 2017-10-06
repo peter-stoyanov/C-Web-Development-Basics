@@ -14,6 +14,6 @@
             this.request = request;
         }
 
-        public IHttpRequest Reuest => this.request;
+        public IHttpRequest Request => this.request;
     }
 }
